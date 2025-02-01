@@ -3,23 +3,30 @@
         <h2>name: {{ name }}</h2>
         <h2>age: {{ age }}</h2>
         <button @click="showTel">check phone number</button>
+        <button @click="changeName">change name</button>
+        <button @click="changeAge">change age</button>
     </div>
 </template>
 
 <script lang="ts">
-export default{
+export default {
     name: 'Person',
-    data(){
-        return{
-            name:'ZS',
-            age:18,
-            tel:18888888888
+    setup() {
+        let name = "ZS";    //此时不是响应式
+        let age = 18;
+        let tel = '13888888888'
+
+        function changeName() {
+            name = "LS";
         }
-    },
-    methods:{
-        showTel(){
-            alert(this.tel)
+        function changeAge() {
+            age += 1;
         }
+        function showTel() {
+            alert(tel);
+        }
+
+        return { name, age, changeName, changeAge, showTel}
     }
 }
 </script>

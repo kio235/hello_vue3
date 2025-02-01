@@ -3,7 +3,7 @@
         <h1>
             hello vue!
         </h1>
-        <Person></Person>
+        <Person/>
     </div>
 
 </template>
