@@ -1,8 +1,8 @@
 <template>
     <div class="app">
-        <!-- <h1>
+        <h1>
             hello vue!
-        </h1> -->
+        </h1>
         <Person/>
     </div>
 

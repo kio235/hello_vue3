@@ -27,6 +27,11 @@ export default {
         }
 
         return { name, age, changeName, changeAge, showTel}
+    },
+    data(){
+        return{
+            a:100
+        }
     }
 }
 </script>
