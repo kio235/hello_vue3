@@ -1,9 +1,8 @@
 <template>
     <div class="person">
-        First name: <input type="text" v-model="firstName"><br>
-        Last name: <input type="text" v-model="lastName"><br>
-        Full name: <span>{{ fullName }}</span>
-        <button @click="changeFullName()">change name</button>
+        <h1><span class="red">Scenario 1</span>: Monitoring the <span class="red">basic data</span> type defined by ref.</h1>
+        <h2>sum: {{ sum }}</h2>
+        <button @click="sumPlusOne()">Click me to plus one!</button>
     </div>
 </template>
 
@@ -16,44 +15,34 @@ export default {
 
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
-let firstName = ref('zhang');
-let lastName = ref('san');
+import { ref, reactive, computed, watch } from 'vue'
 
-const fullName = computed({
-    get:function(){
-        return nameToUpper(firstName.value)+nameToUpper(lastName.value)
-    },
-    set(val){
-        const names = val.split('-')
-        firstName.value = names[0];
-        lastName.value = names[1];
+const sum = ref(0);
+
+function sumPlusOne() {
+    sum.value += 1;
+}
+
+const stopWatch=watch(sum,(newval,oldval)=>{
+    console.log('sum has changed',newval,oldval);
+    if(newval>=10){
+        stopWatch();
     }
 })
-
-function nameToUpper(name: string):string {
-    return name.slice(0, 1).toUpperCase() + name.slice(1);
-}
-
-function changeFullName()
-{
-    fullName.value='Tim-Cook'
-}
-
 </script>
 
 
 <style scoped>
 .person {
-    background-color: skyblue;
+    background-color: #1b9860;
     /* box-shadow: 0 0 10px; */
     border-radius: 10px;
     padding: 20px;
     color: white;
 }
 
-li {
-    font-size: 20px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+.red {
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    color: #ffbcbc;
 }
 </style>
