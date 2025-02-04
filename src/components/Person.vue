@@ -1,16 +1,10 @@
 <template>
     <div class="person">
-        <h2>Car brand: {{ car.brand }}. Value: {{ myCarPrice }}k</h2>
-        <button @click="changeCarPrice()">LOWER!!</button>
+        First name: <input type="text" v-model="firstName"><br>
+        Last name: <input type="text" v-model="lastName"><br>
+        Full name: <span>{{ fullName }}</span>
+        <button @click="changeFullName()">change name</button>
     </div>
-    <br>
-    <h2>Game list:</h2>
-    <ul>
-        <li v-for="games in games" v-bind:key="games.id">{{ games.name }}</li>
-    </ul>
-    <button @click="upgradeGame('fqfqfewe1')">Upgrade CS!</button>
-    <h2>test value: {{ obj.a.b.c }}</h2>
-    <button @click="changeTestValue()">change this value</button>
 </template>
 
 
@@ -22,39 +16,28 @@ export default {
 
 
 <script setup lang="ts">
-import { reactive, ref, toRef, toRefs } from 'vue'
+import { ref, reactive, computed } from 'vue'
+let firstName = ref('zhang');
+let lastName = ref('san');
 
-let car = reactive({ brand: "Benz", price: 100 })
-let games = reactive([
-    { id: 'fqfqfewe1', name: 'csgo' },
-    { id: 'fqfqfewe2', name: 'lol' },
-    { id: 'fqfqfewe3', name: 'dota' },
-])
-
-let obj = reactive({
-    a:{
-        b:{
-            c:'666'
-        }
+const fullName = computed({
+    get:function(){
+        return nameToUpper(firstName.value)+nameToUpper(lastName.value)
+    },
+    set(val){
+        const names = val.split('-')
+        firstName.value = names[0];
+        lastName.value = names[1];
     }
 })
 
-let myCarPrice = toRef(car,'price')
-
-function changeCarPrice() {
-    car.price += 10;
+function nameToUpper(name: string):string {
+    return name.slice(0, 1).toUpperCase() + name.slice(1);
 }
 
-function upgradeGame(id:string) {
-    let game = games.find(game => game.id == id);
-    console.log(game)
-    if (game) {
-        game.name = 'cs2';
-    }
-}
-
-function changeTestValue(){
-    obj.a.b.c = '999';
+function changeFullName()
+{
+    fullName.value='Tim-Cook'
 }
 
 </script>
