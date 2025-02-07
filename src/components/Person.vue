@@ -1,20 +1,33 @@
 <template>
     <div class="person">
-        <h1><span class="red">Scenario 1</span>: Monitoring the <span class="red">BASIC DATA</span> Type Defined by Ref.
+        <h1><span class="red">Scenario 1</span>: Monitoring the <span class="red">BASIC DATA</span> Type Defined by
+            <span class="red">REF</span>.
         </h1>
         <h2>sum: {{ sum }}</h2>
         <button @click="sumPlusOne()">Click me to plus one!</button>
     </div>
-    <br>
+
     <div class="person">
-        <h1><span class="red">Scenario 2</span>: Monitoring the <span class="red">OBJECT</span> Type Defined by Ref.
+        <h1><span class="red">Scenario 2</span>: Monitoring the <span class="red">OBJECT</span> Type Defined by <span
+                class="red">REF</span>.
         </h1>
         <h2>name: {{ person.name }}</h2>
         <h2>age: {{ person.age }}</h2>
         <button @click="changePersonName()">change name</button>
         <button @click="increasePersonAge()">increase age</button>
+        <button @click="changePersonWhole()">change person whole value</button>
         <button @click="changePerson()">change person</button>
-        <button @click="changePerson2()">change person2</button>
+    </div>
+
+    <div class="person">
+        <h1><span class="red">Scenario 3</span>: Monitoring the <span class="red">OBJECTIVE</span> Type Defined by <span
+                class="red">REACTIVE</span>.</h1>
+        <h2>name: {{ recPerson.name }}</h2>
+        <h2>age: {{ recPerson.age }}</h2>
+        <button @click="changeRecPersonName()">change name</button>
+        <button @click="increaseRecPersonAge()">increase age</button>
+        <button @click="changeRecPerson()">change person</button>
+        <button @click="changeMostHobby()">change hobby</button>
     </div>
 </template>
 
@@ -57,11 +70,11 @@ function increasePersonAge() {
     person.value.age++;
 }
 
-function changePerson() {
+function changePersonWhole() {
     person.value = { name: 'W ZZ', age: 23 }
 }
 
-function changePerson2() {
+function changePerson() {
     ({ name: person.value.name, age: person.value.age } = { name: 'LWW', age: 16 })
 }
 
@@ -71,19 +84,53 @@ watch(
     (newval, oldval) => {
         console.log(newval.age, oldval?.age)
     },
-    { deep: true, immediate:true }
+    { deep: true, immediate: false }
 )
 
+//-------------------------------------------------------------------
+
+let recPerson = reactive({
+    name: 'Zhang San',
+    age: 18,
+    hobbys:{
+        most:'tennis',
+        second:'ping pong'
+    }
+})
+
+function changeRecPersonName() {
+    recPerson.name = 'Tim Cook';
+}
+
+function increaseRecPersonAge() {
+    recPerson.age++;
+}
+
+function changeRecPerson() {
+    Object.assign(recPerson, { name: 'LWW', age: 16 })
+    // console.log(recPerson)
+}
+
+function changeMostHobby() {
+    recPerson.hobbys.most='sking'
+}
+
+watch(recPerson,
+    (newval, oldval) => {
+        console.log(newval, oldval)
+    },
+    { deep: false }
+)
 </script>
 
 
 <style scoped>
 .person {
     background-color: #1b9860;
-    /* box-shadow: 0 0 10px; */
     border-radius: 10px;
     padding: 20px;
     color: white;
+    margin: 20px 0px;
 }
 
 .red {
