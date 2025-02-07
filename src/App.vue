@@ -8,14 +8,9 @@
 
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="App">
 import Person from './components/Person.vue';
 
-export default {
-    name: 'App',
-    components: { Person },
-
-}
 </script>
 
 <style>
@@ -44,5 +39,13 @@ button {
 .red {
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     color: #ffbcbc;
+}
+
+.person {
+    background-color: #1b9860;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    margin: 20px 0px;
 }
 </style>
