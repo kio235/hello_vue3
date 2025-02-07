@@ -24,17 +24,28 @@
                 class="red">REACTIVE</span>.</h1>
         <h2>name: {{ recPerson.name }}</h2>
         <h2>age: {{ recPerson.age }}</h2>
+        <h2>hobby:{{ recPerson.hobbys }}</h2>
         <button @click="changeRecPersonName()">change name</button>
         <button @click="increaseRecPersonAge()">increase age</button>
         <button @click="changeRecPerson()">change person</button>
         <button @click="changeMostHobby()">change hobby</button>
     </div>
+
+    <div class="person">
+        <Watch_04 />
+    </div>
+    <div class="person">
+        <Watch_05 />
+    </div>
 </template>
 
 
 <script lang="ts">
+import Watch_04 from './Watch/Watch_04.vue';
+import Watch_05 from './Watch/Watch_05.vue';
 export default {
     name: 'Person',
+    components: { Watch_04, Watch_05 }
 }
 </script>
 
@@ -92,9 +103,9 @@ watch(
 let recPerson = reactive({
     name: 'Zhang San',
     age: 18,
-    hobbys:{
-        most:'tennis',
-        second:'ping pong'
+    hobbys: {
+        most: 'tennis',
+        second: 'ping pong'
     }
 })
 
@@ -112,7 +123,7 @@ function changeRecPerson() {
 }
 
 function changeMostHobby() {
-    recPerson.hobbys.most='sking'
+    recPerson.hobbys.most = 'sking'
 }
 
 watch(recPerson,
@@ -131,10 +142,5 @@ watch(recPerson,
     padding: 20px;
     color: white;
     margin: 20px 0px;
-}
-
-.red {
-    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-    color: #ffbcbc;
 }
 </style>

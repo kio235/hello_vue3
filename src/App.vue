@@ -19,6 +19,9 @@ export default {
 </script>
 
 <style>
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
 .app {
     background-color: #42b883;
     box-shadow: 0 0 10px;
@@ -36,5 +39,10 @@ button {
     border: 2px solid gray;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.red {
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    color: #ffbcbc;
 }
 </style>
