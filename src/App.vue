@@ -3,14 +3,21 @@
         <h1>
             hello vue!
         </h1>
-        <Person />
+        <Person ref="title2" />
+        <button @click="showH2">TEST</button>
     </div>
 
 </template>
 
 <script lang="ts" setup name="App">
+import { ref } from 'vue';
 import Person from './components/Person.vue';
 
+let title2=ref();
+
+function showH2(){
+    console.log(title2.value)
+}
 </script>
 
 <style>

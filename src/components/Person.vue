@@ -1,48 +1,24 @@
 <template>
     <div class="person">
-        <h1>When the water temperature reaches 60 Celsius or the water level reaches 80 cm, send a request to the
-            server.</h1>
-        <h2>current water temperature: {{ waterTemper }}℃</h2>
-        <h2>current water height: {{ waterLevel }}cm</h2>
-        <button @click="addWaterTemper(10)">water temperature + 10</button>
-        <button @click="addWaterLevel(10)">water level + 10</button>
+        <h1>China</h1>
+        <h2 ref="title2">Tian Jin</h2>
+        <h3>Jin Nan</h3>
+        <button @click="showH2">click me to show element &lt;h2&gt;</button>
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
 import { ref, watch, watchEffect } from "vue";
-const waterTemper = ref(10);
-const waterLevel = ref(0);
 
-function addWaterTemper(temper: number) {
-    waterTemper.value += temper;
+// 创建一个 title2，用于存储 ref 标记的内容
+let title2 = ref()
+let a=ref(2834)
+
+function showH2(){
+    console.log(title2.value)
 }
 
-function addWaterLevel(height: number) {
-    waterLevel.value += height;
-}
-
-const stopWatchWaterTemperAndLevel = watch(
-    [waterTemper, waterLevel],
-    (newval) => {
-        const [newTemper, newLevel] = newval;
-        if (newTemper >= 60 || newLevel >= 80) {
-            console.log("REQUEST TO SERVER SENT!");
-            // stopWatchWaterTemperAndLevel();
-        }
-        else {
-            console.log("NOTHING HAPPENED");
-            console.log(newTemper, newLevel)
-        }
-    }
-)
-
-// watchEffect(() => {
-//     if (waterTemper.value >= 60 || waterLevel.value >= 80) {
-//         console.log("REQUEST TO SERVER SENT!");
-//     }
-//     console.log(waterTemper.value,waterLevel.value)
-// })
+defineExpose({a})
 </script>
 
 
