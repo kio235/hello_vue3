@@ -1,24 +1,61 @@
 <template>
     <div class="person">
-        <h1>China</h1>
-        <h2 ref="title2">Tian Jin</h2>
-        <h3>Jin Nan</h3>
-        <button @click="showH2">click me to show element &lt;h2&gt;</button>
+        <h2>current sum: {{ sum }}</h2>
+        <button @click="add()">sum plus one</button>
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
-import { ref, watch, watchEffect } from "vue";
+import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref, watch, watchEffect } from "vue";
 
-// 创建一个 title2，用于存储 ref 标记的内容
-let title2 = ref()
-let a=ref(2834)
+let sum=ref(0);
 
-function showH2(){
-    console.log(title2.value)
+function add(){
+    sum.value++;
 }
 
-defineExpose({a})
+// setup内都是创建
+console.log('created')
+
+// 挂载
+onBeforeMount(
+    ()=>{
+        console.log('before mount')
+    }
+)
+
+// 挂载完毕
+onMounted(
+    ()=>{
+        console.log('mounted')
+    }
+)
+
+// 更新前
+onBeforeUpdate(
+    ()=>{
+        console.log('before update')
+    }
+)
+
+onUpdated(
+    ()=>{
+        console.log('updated')
+    }
+)
+
+onBeforeUnmount(
+    ()=>{
+        console.log('before unmount')
+    }
+)
+
+onUnmounted(
+    ()=>{
+        console.log('unmounted')
+    }
+)
+
 </script>
 
 

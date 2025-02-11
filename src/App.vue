@@ -3,8 +3,8 @@
         <h1>
             hello vue!
         </h1>
-        <Person ref="title2" />
-        <button @click="showH2">TEST</button>
+        <Person v-if="isShowPerson"/>
+        <button @click="toggleIsShowPerson()">change person visibility</button>
     </div>
 
 </template>
@@ -13,11 +13,13 @@
 import { ref } from 'vue';
 import Person from './components/Person.vue';
 
-let title2=ref();
+let isShowPerson=ref(true);
 
-function showH2(){
-    console.log(title2.value)
+function toggleIsShowPerson()
+{
+    isShowPerson.value=!isShowPerson.value;
 }
+
 </script>
 
 <style>
