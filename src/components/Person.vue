@@ -1,62 +1,31 @@
 <template>
     <div class="person">
-        <h2>current sum: {{ sum }}</h2>
-        <button @click="add()">sum plus one</button>
+        <h2>num: {{ num }}</h2>
+        <button @click="num++">plus one</button>
+    </div>
+    <div class="person">
+        <img v-for="(dog, index) in dogList" :src="dog" alt="dog image" :key="index">
+        <br>
+        <button @click="getNewDog()">show me another one</button>
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
-import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref, watch, watchEffect } from "vue";
+import useDog from "@/hooks/useDog";
+import useNum from "@/hooks/useNum";
 
-let sum=ref(0);
-
-function add(){
-    sum.value++;
-}
-
-// setup内都是创建
-console.log('created')
-
-// 挂载
-onBeforeMount(
-    ()=>{
-        console.log('before mount')
-    }
-)
-
-// 挂载完毕
-onMounted(
-    ()=>{
-        console.log('mounted')
-    }
-)
-
-// 更新前
-onBeforeUpdate(
-    ()=>{
-        console.log('before update')
-    }
-)
-
-onUpdated(
-    ()=>{
-        console.log('updated')
-    }
-)
-
-onBeforeUnmount(
-    ()=>{
-        console.log('before unmount')
-    }
-)
-
-onUnmounted(
-    ()=>{
-        console.log('unmounted')
-    }
-)
+const { dogList, getNewDog } = useDog();
+const { num } = useNum();
 
 </script>
 
 
-<style scoped></style>
+<style scoped>
+img {
+    height: 200px;
+    /* border: 20px solid black; */
+    border-radius: 5px;
+    /* padding: 10px; */
+    margin: 5px 20px;
+}
+</style>
