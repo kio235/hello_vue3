@@ -1,9 +1,5 @@
 <template>
-    <div class="person">
-        <h2>num: {{ num }}</h2>
-        <button @click="num++">plus one</button>
-    </div>
-    <div class="person">
+    <div>
         <img v-for="(dog, index) in dogList" :src="dog" alt="dog image" :key="index">
         <br>
         <button @click="getNewDog()">show me another one</button>
@@ -12,10 +8,8 @@
 
 <script setup lang="ts" name="Person">
 import useDog from "@/hooks/useDog";
-import useNum from "@/hooks/useNum";
 
 const { dogList, getNewDog } = useDog();
-const { num } = useNum();
 
 </script>
 
