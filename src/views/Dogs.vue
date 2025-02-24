@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<script setup lang="ts" name="Person">
+<script setup lang="ts">
 import useDog from "@/hooks/useDog";
 
 const { dogList, getNewDog } = useDog();

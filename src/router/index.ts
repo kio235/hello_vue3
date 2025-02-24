@@ -5,11 +5,13 @@ import About from "@/views/About.vue";
 import Home from "@/views/Home.vue";
 import News from "@/views/News.vue";
 import Dogs from "@/views/Dogs.vue";
+import NewsContent from "@/views/NewsContent.vue";
 
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [
 		{
+			name: "home",
 			path: "/home",
 			component: Home,
 		},
@@ -20,11 +22,17 @@ const router = createRouter({
 		{
 			path: "/news",
 			component: News,
+			children:[
+				{
+					path:"detail",
+					component:NewsContent
+				}
+			]
 		},
-        {
-            path: "/dogs",
+		{
+			path: "/dogs",
 			component: Dogs,
-        }
+		},
 	],
 });
 
