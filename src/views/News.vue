@@ -29,9 +29,9 @@
 import { reactive } from "vue";
 
 const news = [
-	{ title: "new1", id: "001", content: "I woke up!" },
-	{ title: "new2", id: "002", content: "I ate!" },
-	{ title: "new3", id: "003", content: "I sleep!" },
+	{ title: "new1", id: 1, content: "I woke up!" },
+	{ title: "new2", id: 2, content: "I ate!" },
+	{ title: "new3", id: 3, content: "I sleep!" },
 ];
 </script>
 

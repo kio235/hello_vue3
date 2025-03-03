@@ -22,13 +22,16 @@ const router = createRouter({
 		{
 			path: "/news",
 			component: News,
-			children:[
+			children: [
 				{
-					name:"newsContent",
-					path:"detail/:id/:title/:content?",
-					component:NewsContent
-				}
-			]
+					name: "newsContent",
+					path: "detail/:id/:title/:content?",
+					component: NewsContent,
+					props(route){
+						return route.params
+					}
+				},
+			],
 		},
 		{
 			path: "/dogs",
