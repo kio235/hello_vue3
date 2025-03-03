@@ -2,18 +2,18 @@
 	<div class="news-box">
 		<div class="navigate">
 			<li v-for="i in news" :key="i.id">
-				<!-- <RouterLink :to="`/news/detail?id=${i.id}&title=${i.title}&content=${i.content}`" active-class="active">{{
+				<!-- <RouterLink :to="`/news/detail/123/456/789`" active-class="active">{{
 					i.title
 				}}</RouterLink> -->
 
 				<RouterLink
 					:to="{
-						path: '/news/detail',
-						query: {
-							id: i.id,
-							title: i.title,
-							content: i.content,
-						},
+						name:'newsContent',
+                        params:{
+                            id:i.id,
+                            title:i.title,
+                            content:i.content
+                        }
 					}" 
 					>{{ i.title }}</RouterLink
 				>

@@ -1,8 +1,8 @@
 <template>
     <ul class="news-list">
-        <li>ID: {{ query.id }}</li>
-        <li>Title: {{ query.title }}</li>
-        <li>Content: {{ query.content }}</li>
+        <li>ID: {{ route.params.id }}</li>
+        <li>Title: {{ route.params.title }}</li>
+        <li>Content: {{ route.params.content }}</li>
     </ul>
 </template>
 
@@ -10,5 +10,5 @@
 import { toRefs } from 'vue';
 import { useRoute } from 'vue-router';
 const route = useRoute()
-let {query} = toRefs(route)
+
 </script>
