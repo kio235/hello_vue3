@@ -6,15 +6,16 @@
 					i.title
 				}}</RouterLink> -->
 
+				<button @click="showNewsDetail(i)">show news</button>
 				<RouterLink
 					:to="{
-						name:'newsContent',
-                        params:{
-                            id:i.id,
-                            title:i.title,
-                            content:i.content
-                        }
-					}" 
+						name: 'newsContent',
+						params: {
+							id: i.id,
+							title: i.title,
+							content: i.content,
+						},
+					}"
 					>{{ i.title }}</RouterLink
 				>
 			</li>
@@ -27,12 +28,32 @@
 
 <script setup lang="ts">
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+interface NewsInter{
+	id:number,
+	title:string,
+	content:string,
+}
 
 const news = [
 	{ title: "new1", id: 1, content: "I woke up!" },
 	{ title: "new2", id: 2, content: "I ate!" },
 	{ title: "new3", id: 3, content: "I sleep!" },
 ];
+
+function showNewsDetail(i:NewsInter) {
+	router.replace({
+		name: "newsContent",
+		params: {
+			id: i.id,
+			title: i.title,
+			content: i.content,
+		},
+	});
+}
 </script>
 
 <style scoped>

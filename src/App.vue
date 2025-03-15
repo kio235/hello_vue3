@@ -2,13 +2,15 @@
     <div class="app">
         <h1>Vue router test</h1>
         <div class="navigate">
-            <RouterLink :to="{ name: 'home' }" active-class="active">home</RouterLink>
+            <RouterLink replace :to="{ name: 'home' }" active-class="active">home</RouterLink>
             <RouterLink to="/news" active-class="active">news</RouterLink>
             <RouterLink to="/about" active-class="active">about</RouterLink>
             <RouterLink :to="{ path: '/dogs' }" active-class="active">dogs</RouterLink>
         </div>
         <div class="main-content">
             <RouterView></RouterView>
+            <br>
+            <RouterView name="footer"></RouterView>
         </div>
     </div>
 </template>
