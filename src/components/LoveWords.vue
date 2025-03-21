@@ -2,7 +2,7 @@
 	<div class="words">
 		<button @click="getWord">get</button>
 		<ul>
-			<li v-for="word in loveWordsStore.wordList" :key="word.id">
+			<li v-for="word in wordList" :key="word.id">
 				{{ word.content }}
 			</li>
 		</ul>
@@ -10,20 +10,21 @@
 </template>
 
 <script setup lang="ts" name="Count">
-import { reactive } from "vue";
-import axios from "axios";
-import { nanoid } from "nanoid";
 import useLoveWordsStore from "@/store/loveWords";
 import type { LoveWord } from "@/types/loveWord";
+import { storeToRefs } from "pinia";
 
 const loveWordsStore = useLoveWordsStore();
+const { wordList } = storeToRefs(loveWordsStore);
 
-async function getWord() {
-	let result = await axios.get(
-		"https://api.uomg.com/api/rand.qinghua?format=json"
-	);
-	let obj: LoveWord = { id: nanoid(), content: result.data.content };
-	loveWordsStore.wordList.unshift(obj);
+function getWord() {
+	// let result = await axios.get(
+	// 	"https://www.random.org/strings/?num=1&len=10&digits=on&upperalpha=on&loweralpha=on&format=plain&rnd=new"
+	// );
+	// let obj: LoveWord = { id: nanoid(), content: result.data };
+	// loveWordsStore.wordList.unshift(obj);
+
+	loveWordsStore.getLoveWord();
 }
 </script>
 
