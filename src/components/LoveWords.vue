@@ -17,6 +17,11 @@ import { storeToRefs } from "pinia";
 const loveWordsStore = useLoveWordsStore();
 const { wordList } = storeToRefs(loveWordsStore);
 
+loveWordsStore.$subscribe((mutate, state) => {
+	console.log("love word changed");
+	localStorage.setItem("wordList", JSON.stringify(state.wordList));
+});
+
 function getWord() {
 	// let result = await axios.get(
 	// 	"https://www.random.org/strings/?num=1&len=10&digits=on&upperalpha=on&loweralpha=on&format=plain&rnd=new"
