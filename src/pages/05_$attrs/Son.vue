@@ -1,7 +1,7 @@
 <template>
 	<div class="child">
 		<h2>我是子组件</h2>
-		<Grandson />
+		<Grandson v-bind="$attrs" />
 	</div>
 </template>
 
