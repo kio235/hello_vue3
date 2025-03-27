@@ -1,5 +1,6 @@
 <template>
-	<div>
+	<div class="myInput">
+		<h2>我是子组件</h2>
 		<input
 			type="text"
 			:value="props.modelValue"
@@ -32,5 +33,10 @@ input {
 	padding: 5px;
 	height: 20px;
 	width: 150px;
+}
+.myInput{
+	background-color: lightblue;
+	padding: 20px;
+	border-radius: 10px;
 }
 </style>

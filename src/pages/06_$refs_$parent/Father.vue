@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts" name="father">
-import { isProxy, isReactive, reactive, ref, useTemplateRef } from "vue";
+import { isProxy, isReactive, reactive, ref, toRefs, useTemplateRef } from "vue";
 import Son1 from "./Son1.vue";
 import Son2 from "./Son2.vue";
 
@@ -27,7 +27,9 @@ function changeSon1Toy() {
 }
 
 function increaseAge(x: { [key: string]: any }) {
+	console.log(x);
 	console.log(isProxy(x));
+	console.log(toRefs(x));
 	a = x;
 	for (let key in x) {
 		x[key].age += 1;
